@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 2.6)
+project(monitor)
+
+set(CURSES_NEED_NCURSES TRUE)
+find_package(Curses REQUIRED)
+include_directories(${CURSES_INCLUDE_DIRS})
+
+include_directories(include)
+file(GLOB_RECURSE INCLUDE_FILES ${CMAKE_SOURCE_DIR}/include/*.h)
+file(GLOB_RECURSE SOURCE_FILES_NO_MAIN ${CMAKE_SOURCE_DIR}/src/*.cpp)
+# for using catch we don't need the main
+list(FILTER SOURCE_FILES_NO_MAIN EXCLUDE REGEX ".*main.cpp$")
+file(GLOB SOURCES "src/*.cpp")
+add_executable(monitor ${SOURCES})
+include(${CMAKE_SOURCE_DIR}/cmake/unit_test.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/clang_tools.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/cppcheck.cmake)
+set_property(TARGET monitor PROPERTY CXX_STANDARD 17)
+target_link_libraries(monitor ${CURSES_LIBRARIES})
+# TODO: Run -Werror in CI.
+target_compile_options(monitor PRIVATE -Wall -Wextra -Werror)
