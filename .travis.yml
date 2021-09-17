@@ -41,21 +41,17 @@ matrix:
         - MATRIX_EVAL="CC=clang-14 && CXX=clang++-14"
 
 before_install:
-    - eval "${MATRIX_EVAL}"
-
-before_script:
-  - mkdir -p build
-	- cd build && cmake .. && 
+    - eval "${MATRIX_EVAL}" 
 	
 script: VERBOSE=1 make && ctest -V
 addons:
   apt:
     packages: lcov
 
-after_success:
+#after_success:
 # Create lcov report
-- lcov --capture --directory . --output-file coverage.info
-- lcov --remove coverage.info '/usr/*' --output-file coverage.info # filter system-files
-- lcov --list coverage.info # debug info
+#- lcov --capture --directory . --output-file coverage.info
+#- lcov --remove coverage.info '/usr/*' --output-file coverage.info # filter system-files
+#- lcov --list coverage.info # debug info
 # Uploading report to CodeCov
 # - bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
