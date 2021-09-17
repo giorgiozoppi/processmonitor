@@ -11,14 +11,14 @@ namespace LinuxParser {
  *
  */
 class CPUSampler final {
- public:
+public:
   /**
    * @brief Construct a new cpu Sampler object
    *
    * @param samples number of samples for cpu usage.
    * @param func callback for the results.
    */
-  CPUSampler(int samples, const std::function<void(float)>& func);
+  CPUSampler(int samples, const std::function<void(float)> &func);
   /**
    * @brief start the sampling when it is finished will call back the function.
    *
@@ -30,15 +30,15 @@ class CPUSampler final {
    */
   static constexpr int SAMPLING_TIME_MS{100};
 
- private:
+private:
   // load data
   float LoadData() const;
   // convert the /proc/stat counter in vector of values
-  std::vector<int> Split(const std::string& input) const;
+  std::vector<int> Split(const std::string &input) const;
   // number of samples
   int samples_;
   // callback
   std::function<void(float)> update_;
 };
-}  // namespace LinuxParser
+} // namespace LinuxParser
 #endif
