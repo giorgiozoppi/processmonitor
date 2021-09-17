@@ -1,5 +1,6 @@
 # Process Monitor
 
+This is a simple exercise to test my C++17 knowledge.
 
 ![System Monitor](images/monitor.png)
 
