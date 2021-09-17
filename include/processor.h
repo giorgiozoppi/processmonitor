@@ -3,6 +3,7 @@
 #include <fstream>
 #include <optional>
 #include <string>
+#include <vector>
 
 // forward declaration
 class Processor;

@@ -62,9 +62,9 @@ class ProcessBuilder final {
   /**
    * @brief Get the average cpu total time.
    * We'll use this for computing the process time.
-   * 
+   *
    * @param num_cpu Number of the cpu in the system
-   * @return unsigned long long int 
+   * @return unsigned long long int
    */
 
   static unsigned long long int GetTotalCpuUsage(unsigned int num_cpu);
