@@ -40,6 +40,6 @@ enum CPUStates {
   kGuest_,
   kGuestNice_
 };
-};  // namespace LinuxParser
+}; // namespace LinuxParser
 
 #endif

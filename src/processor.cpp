@@ -35,8 +35,8 @@ std::optional<std::vector<Processor>> DetectProcessor::GetSystemProcessors() {
   }
   return current_processors;
 }
-std::tuple<std::string, std::string> DetectProcessor::ParseLine(
-    const std::string& line) {
+std::tuple<std::string, std::string>
+DetectProcessor::ParseLine(const std::string &line) {
   auto current{line};
   auto separator = current.find_first_of(":");
   auto name = line.substr(0, separator);
@@ -45,8 +45,8 @@ std::tuple<std::string, std::string> DetectProcessor::ParseLine(
   ltrim(value);
   return std::make_tuple(name, value);
 }
-std::optional<Processor> DetectProcessor::CreateProcessor(
-    std::ifstream& dataFile) {
+std::optional<Processor>
+DetectProcessor::CreateProcessor(std::ifstream &dataFile) {
   std::string current{""};
   Processor proc;
   // we use this for reading the three value to be read and just those.

@@ -30,7 +30,7 @@ using util::splitInTwo;
  * @param directory
  * @return Process
  */
-Process ProcessBuilder::Build(const std::filesystem::path& directory) {
+Process ProcessBuilder::Build(const std::filesystem::path &directory) {
   Process p;
   std::string pid(directory.filename());
   std::filesystem::path procDir(LinuxParser::kProcDirectory);
@@ -54,7 +54,7 @@ Process ProcessBuilder::Build(const std::filesystem::path& directory) {
  * @param base subdirectory /proc/PID
  * @return long the value in uptime.
  */
-long ProcessBuilder::FindUptime(const std::filesystem::path& base) {
+long ProcessBuilder::FindUptime(const std::filesystem::path &base) {
   std::filesystem::path userstat{base};
   userstat += LinuxParser::kStatFilename;
   std::ifstream userdata{userstat};
@@ -85,7 +85,7 @@ long ProcessBuilder::FindUptime(const std::filesystem::path& base) {
  * @param base   base directory in /proc/PID
  * @return std::string a string containing the username.
  */
-std::string ProcessBuilder::FindUser(const std::filesystem::path& base) {
+std::string ProcessBuilder::FindUser(const std::filesystem::path &base) {
   std::filesystem::path userstat{base};
   userstat += LinuxParser::kStatusFilename;
   std::ifstream userdata{userstat};
@@ -127,7 +127,7 @@ std::string ProcessBuilder::FindUser(const std::filesystem::path& base) {
  * @param base  path in /proc for the current process
  * @return float cpu usage for the current process
  */
-float ProcessBuilder::FindCpuUsage(const std::filesystem::path& base) {
+float ProcessBuilder::FindCpuUsage(const std::filesystem::path &base) {
   std::filesystem::path path{base};
   std::filesystem::path procBase{LinuxParser::kProcDirectory};
   std::filesystem::path globalStatPath{procBase};
@@ -163,7 +163,7 @@ float ProcessBuilder::FindCpuUsage(const std::filesystem::path& base) {
  * @param base path in /proc for the current process
  * @return std::string memory usage.
  */
-std::string ProcessBuilder::FindMemoryUsage(const std::filesystem::path& base) {
+std::string ProcessBuilder::FindMemoryUsage(const std::filesystem::path &base) {
   std::filesystem::path path{base};
   path += LinuxParser::kStatusFilename;
   std::ifstream stream{path};
@@ -190,7 +190,7 @@ std::string ProcessBuilder::FindMemoryUsage(const std::filesystem::path& base) {
  * @param base  path in /proc for the current process
  * @return std::string
  */
-std::string ProcessBuilder::FindCommand(const std::filesystem::path& base) {
+std::string ProcessBuilder::FindCommand(const std::filesystem::path &base) {
   std::filesystem::path path{base};
   std::string contents;
   path += LinuxParser::kCmdlineFilename;
@@ -252,4 +252,4 @@ string Process::User() const noexcept { return user_; }
 
 long int Process::UpTime() const noexcept { return uptime_; }
 
-bool Process::operator<(Process const& a) const { return this->pid_ < a.pid_; }
+bool Process::operator<(Process const &a) const { return this->pid_ < a.pid_; }

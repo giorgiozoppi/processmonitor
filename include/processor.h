@@ -13,7 +13,7 @@ class Processor;
  * in the system.
  */
 class DetectProcessor final {
- public:
+public:
   /**
    * @brief Get the System Processors (Cores) Descriptors if any parse
    * error occurs the list can be std::nullopt.
@@ -21,10 +21,10 @@ class DetectProcessor final {
    */
   static std::optional<std::vector<Processor>> GetSystemProcessors();
 
- private:
-  static std::optional<Processor> CreateProcessor(std::ifstream& stream);
-  static std::tuple<std::string, std::string> ParseLine(
-      const std::string& line);
+private:
+  static std::optional<Processor> CreateProcessor(std::ifstream &stream);
+  static std::tuple<std::string, std::string>
+  ParseLine(const std::string &line);
 };
 /**
  * @brief Processor is a class that models a single core.
@@ -35,7 +35,7 @@ class Processor final {
   // we use DetectProcessor like an object factory
   friend class DetectProcessor;
 
- public:
+public:
   /**
    * @brief CPU_SAMPLES is the number of sample to use for Utilization
    *
@@ -68,7 +68,7 @@ class Processor final {
    */
   float Utilization();
 
- private:
+private:
   std::string modelName_{""};
   float frequency_{0.0f};
   float cacheSize_{0.0f};

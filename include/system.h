@@ -8,7 +8,7 @@
 #include "processor.h"
 
 class System {
- public:
+public:
   /**
    * @brief Construct a new System
    * Load everything that it is immutable just once. Immutable things are:
@@ -23,9 +23,9 @@ class System {
    *
    * @return Processor&
    */
-  Processor& Cpu();
-  std::vector<Process>& Processes();  // TODO: See src/system.cpp
-  float MemoryUtilization();          // TODO: See src/system.cpp
+  Processor &Cpu();
+  std::vector<Process> &Processes(); // TODO: See src/system.cpp
+  float MemoryUtilization();         // TODO: See src/system.cpp
   /**
    * @brief Uptime returns current system uptime
    *
@@ -59,7 +59,7 @@ class System {
   std::string OperatingSystem();
 
   // TODO: Define any necessary private members
- private:
+private:
   // Load the number of processes in the CPU.
   int LoadRunningProcessing();
   // Load the current operating system

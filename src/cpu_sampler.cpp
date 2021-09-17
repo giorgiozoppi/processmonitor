@@ -22,7 +22,7 @@ namespace LinuxParser {
  * @param func    tcallback to call when the samping and median computation is
  * done
  */
-CPUSampler::CPUSampler(int samples, const std::function<void(float)>& func)
+CPUSampler::CPUSampler(int samples, const std::function<void(float)> &func)
     : samples_(samples), update_(func) {}
 
 /**
@@ -51,7 +51,7 @@ void CPUSampler::Sample() {
  * @param input string of counters with spaces (i.e 912 129 12 12)
  * @return std::vector<int> a vector of integer
  */
-std::vector<int> CPUSampler::Split(const std::string& input) const {
+std::vector<int> CPUSampler::Split(const std::string &input) const {
   std::istringstream tokens(input);
   std::vector<int> data;
   while (tokens) {
@@ -101,4 +101,4 @@ float CPUSampler::LoadData() const {
   }
   return 0.0;
 }
-}  // namespace LinuxParser
+} // namespace LinuxParser

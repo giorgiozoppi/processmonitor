@@ -145,7 +145,7 @@ int LinuxParser::TotalProcesses() {
   // scan_pid is used twice: here and when we build the processes.
 
   scan_pid(LinuxParser::kProcDirectory,
-           [&proc_number](const std::string&) { proc_number++; });
+           [&proc_number](const std::string &) { proc_number++; });
   return proc_number;
 }
 /**

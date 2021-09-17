@@ -13,44 +13,44 @@ class Process;
  * Process class is just a readonly class.
  */
 class ProcessBuilder final {
- public:
+public:
   /**
    * @brief Build a process passing its path.
    *
    * @param process_dir
    * @return Process
    */
-  static Process Build(const std::filesystem::path& process_dir);
+  static Process Build(const std::filesystem::path &process_dir);
 
- private:
+private:
   /**
    * @brief Find the process user information using the /proc fs.
    *
    * @param base path in proc of the current process
    * @return std::string user name of the current process user.
    */
-  static std::string FindUser(const std::filesystem::path& base);
+  static std::string FindUser(const std::filesystem::path &base);
   /**
    * @brief Find uptime for the current process
    *
    * @param base  path in proc fo the current base
    * @return long time in seconds of the uptime.
    */
-  static long FindUptime(const std::filesystem::path& base);
+  static long FindUptime(const std::filesystem::path &base);
   /**
    * @brief Find the cpu usage for the current process.
    *
    * @param base  path in /proc for the current process
    * @return float cpu usage for the current process
    */
-  static float FindCpuUsage(const std::filesystem::path& base);
+  static float FindCpuUsage(const std::filesystem::path &base);
   /**
    * @brief Find memory usage for the current process
    *
    * @param base path in /proc for the current process
    * @return std::string memory usage.
    */
-  static std::string FindMemoryUsage(const std::filesystem::path& base);
+  static std::string FindMemoryUsage(const std::filesystem::path &base);
 
   /**
    * @brief Find the current command for the current process
@@ -58,7 +58,7 @@ class ProcessBuilder final {
    * @param base  path in /proc for the current process
    * @return std::string
    */
-  static std::string FindCommand(const std::filesystem::path& base);
+  static std::string FindCommand(const std::filesystem::path &base);
   /**
    * @brief Get the average cpu total time.
    * We'll use this for computing the process time.
@@ -75,7 +75,7 @@ class ProcessBuilder final {
  * It represent a process and what we need.
  */
 class Process final {
- public:
+public:
   /**
    * @brief Pid   Process ID
    *
@@ -120,9 +120,9 @@ class Process final {
    * @return true If is less then a
    * @return false otherwise.
    */
-  bool operator<(Process const& a) const;
+  bool operator<(Process const &a) const;
 
- private:
+private:
   int pid_;
   std::string user_;
   std::string command_;

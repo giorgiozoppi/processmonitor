@@ -47,16 +47,16 @@ System::System() {
  * @return Processor& A processor descriptor.
  */
 
-Processor& System::Cpu() { return cpu_; }
+Processor &System::Cpu() { return cpu_; }
 
 /*
  */
 // TODO: Return a container composed of the system's processes
-vector<Process>& System::Processes() {
+vector<Process> &System::Processes() {
   std::filesystem::path base{LinuxParser::kProcDirectory};
   processes_.clear();
   auto processes = LinuxParser::Pids();
-  for (const auto& process : processes) {
+  for (const auto &process : processes) {
     auto current_proc = base;
     current_proc += std::to_string(process);
     auto process_data = ProcessBuilder::Build(current_proc);

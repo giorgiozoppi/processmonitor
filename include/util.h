@@ -28,8 +28,8 @@ static constexpr std::string_view NUMBERS = "0123456789";
  * @return std::string a copy of the original string replaced. Note that it's
  * cheap due to NVO.
  */
-inline std::string replace(std::string& str, const std::string& repl,
-                           const std::string& torepl) {
+inline std::string replace(std::string &str, const std::string &repl,
+                           const std::string &torepl) {
   if (str.find(repl) == std::string::npos) {
     return str;
   }
@@ -41,7 +41,7 @@ inline std::string replace(std::string& str, const std::string& repl,
  * @param stream        stream to be used.
  * @return std::string  resulting string.
  */
-inline std::string readlines(std::ifstream& stream) {
+inline std::string readlines(std::ifstream &stream) {
   std::string current;
   std::ostringstream out;
 
@@ -57,7 +57,7 @@ inline std::string readlines(std::ifstream& stream) {
  * @param value string to be trimmed.
  * @return std::string
  */
-inline std::string rtrim(std::string& value) {
+inline std::string rtrim(std::string &value) {
   size_t end = value.find_last_not_of(WHITESPACE);
   if (end != std::string::npos) {
     value = value.substr(0, end + 1);
@@ -70,7 +70,7 @@ inline std::string rtrim(std::string& value) {
  * @param value string to be trimmed.
  * @return std::string
  */
-inline std::string ltrim(std::string& value) {
+inline std::string ltrim(std::string &value) {
   size_t start = value.find_first_not_of(WHITESPACE);
   if (start != std::string::npos) {
     value = value.substr(start);
@@ -83,8 +83,8 @@ inline std::string ltrim(std::string& value) {
  * @param chars list of characters to be used.
  * @return std::string
  */
-inline std::tuple<std::string, std::string> splitInTwo(
-    const std::string& str, const std::string_view chars) {
+inline std::tuple<std::string, std::string>
+splitInTwo(const std::string &str, const std::string_view chars) {
   auto mid = str.find_first_of(chars);
   auto first = str.substr(0, mid);
   auto second = str.substr(mid + 1);
@@ -99,7 +99,7 @@ inline std::tuple<std::string, std::string> splitInTwo(
  * @param sep Separator character
  * @return std::vector<std::string> Array of substrings divided by separator.
  */
-inline std::vector<std::string> split(const std::string& data, char sep) {
+inline std::vector<std::string> split(const std::string &data, char sep) {
   std::vector<std::string> splitted_data;
   auto prev = 0;
   auto current = data.find_first_of(sep);
@@ -125,17 +125,17 @@ inline std::vector<std::string> split(const std::string& data, char sep) {
  * @return true  if it's a integral number
  * @return false if it's not an integral number
  */
-inline bool is_number(const std::string& data) {
+inline bool is_number(const std::string &data) {
   return ((!data.empty()) &&
           (data.find_first_not_of(NUMBERS) == std::string::npos));
 }
-inline int to_integral(const std::string& row) {
+inline int to_integral(const std::string &row) {
   auto value(row);
   ltrim(value);
   rtrim(value);
   return stoi(value);
 }
-inline float to_float(const std::string& row) {
+inline float to_float(const std::string &row) {
   auto value(row);
   ltrim(value);
   rtrim(value);
@@ -150,14 +150,14 @@ inline float to_float(const std::string& row) {
  * @param path path to be scanned.
  * @param op   callback to be called foreach item.
  */
-inline void scan_pid(const std::string& path,
-                     const std::function<void(std::string)>& op) {
-  for (const auto& entry : std::filesystem::directory_iterator(path)) {
+inline void scan_pid(const std::string &path,
+                     const std::function<void(std::string)> &op) {
+  for (const auto &entry : std::filesystem::directory_iterator(path)) {
     auto pathname = entry.path();
     if (entry.is_directory() && util::is_number(pathname.filename())) {
       op(pathname.filename());
     }
   }
 }
-}  // namespace util
+} // namespace util
 #endif
