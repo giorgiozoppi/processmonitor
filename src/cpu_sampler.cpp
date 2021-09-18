@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <chrono>
 #include <cmath>
-#include <execution>
 #include <filesystem>
 #include <fstream>
 #include <functional>
@@ -95,8 +94,7 @@ float CPUSampler::LoadData() const {
         7th column : softirq = servicing softirqs
     */
     auto idle_percentuage =
-        (data[3] * 100.0) /
-        std::reduce(std::execution::par, data.begin(), data.begin() + 7);
+        (data[3] * 100.0) / std::accumulate(data.begin(), data.begin() + 7, 0);
     return 100.0 - idle_percentuage;
   }
   return 0.0;

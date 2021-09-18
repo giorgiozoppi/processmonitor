@@ -18,7 +18,8 @@ TEST_CASE("Should convert int with success", "[util]") {
   REQUIRE(12 == value);
 }
 TEST_CASE("Should detect all pids correctly", "[util]") {
-  std::system("ps ax > /tmp/nproc");
+  auto ret = std::system("ps ax > /tmp/nproc");
+  REQUIRE(ret >=0);
   std::ifstream current{"/tmp/nproc"};
   std::string row;
   std::vector<int> expected_pids;

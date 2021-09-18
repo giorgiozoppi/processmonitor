@@ -12,7 +12,8 @@ TEST_CASE("Shall be the number of running processes correct", "[system]") {
 }
 TEST_CASE("Shall be the number of total processes correct", "[system]") {
     System currentSystem;
-    std::system("ps -e | wc -l > /tmp/numproc");
+    auto ret = std::system("ps -e | wc -l > /tmp/numproc");
+    REQUIRE(ret >=0);
     int num_proc{0};
     std::ifstream proc{"/tmp/numproc"};
     if (proc.is_open()) {

@@ -9,7 +9,8 @@ TEST_CASE("Should detect the correct number of cpus", "[processor]") {
   auto cpus = DetectProcessor::GetSystemProcessors();
   std::filesystem::path cpuFile("/tmp/cpus");
   REQUIRE(cpus != std::nullopt);
-  std::system("cat /proc/cpuinfo | grep processor | wc -l > /tmp/cpus");
+  auto ret = std::system("cat /proc/cpuinfo | grep processor | wc -l > /tmp/cpus");
+  REQUIRE(ret >=0);
   std::ifstream currentCpuFile{cpuFile};
   REQUIRE(true == currentCpuFile.is_open());
   std::string str;
@@ -22,8 +23,9 @@ TEST_CASE("Should detect cpu models", "[processor]") {
   auto cpus = DetectProcessor::GetSystemProcessors();
   std::filesystem::path cpuFile("/tmp/cpumodels");
   REQUIRE(cpus != std::nullopt);
-  std::system(
+  auto ret = std::system(
       "cat /proc/cpuinfo | grep model.*name  | head -n 1 | awk -F : '{ print $2 }' | sed s/[[:space:]]/#/g  > /tmp/cpumodels");
+  REQUIRE(ret >=0);
   std::ifstream currentFile{cpuFile};
   std::string cpuModel;
   std::getline(currentFile, cpuModel);
