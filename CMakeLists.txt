@@ -5,16 +5,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CURSES_NEED_NCURSES TRUE)
 find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIRS})
-if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-  # using Clang
-  set(CXX_F)
-elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-  # using GCC
-elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
-  # using Intel C++
-elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-  # using Visual Studio C++
-endif()
 include_directories(include)
 file(GLOB_RECURSE INCLUDE_FILES ${CMAKE_SOURCE_DIR}/include/*.h)
 file(GLOB_RECURSE SOURCE_FILES_NO_MAIN ${CMAKE_SOURCE_DIR}/src/*.cpp)
