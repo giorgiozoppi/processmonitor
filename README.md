@@ -4,6 +4,11 @@ This is a simple exercise to test my C++17 knowledge.
 
 ![System Monitor](images/monitor.png)
 
+### Dependencies
+This project requires g++-11. It has been tested also with g++9 and clang-14.
+
+1. `sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test`	
+2. `sudo apt install -y gcc-11`
 
 ## Make
 This project uses [Make](https://www.gnu.org/software/make/). The Makefile has four targets:
