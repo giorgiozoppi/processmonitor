@@ -1,6 +1,7 @@
 #include "processor.h"
 
 #include <atomic>
+#include <cmath>
 #include <filesystem>
 
 #include "cpu_sampler.h"
@@ -59,7 +60,7 @@ DetectProcessor::CreateProcessor(std::ifstream &dataFile) {
       state++;
     }
     if (current.find(infos[1]) != std::string::npos) {
-      proc.frequency_ = std::stof(value);
+      proc.frequency_ = std::round(std::stof(value));
       state++;
     }
     if (current.find(infos[2]) != std::string::npos) {
