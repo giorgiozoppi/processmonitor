@@ -207,7 +207,6 @@ std::string ProcessBuilder::FindCommand(const std::filesystem::path &base) {
     std::getline(current, contents);
     auto v = util::split(contents, ':');
     util::ltrim(v[1]);
-    util::ltrim(v[1]);
     current.close();
     return v[1];
   } else {
