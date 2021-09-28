@@ -191,13 +191,28 @@ std::string ProcessBuilder::FindMemoryUsage(const std::filesystem::path &base) {
  * @return std::string
  */
 std::string ProcessBuilder::FindCommand(const std::filesystem::path &base) {
-  std::filesystem::path path{base};
+  std::filesystem::path path;
   std::string contents;
-  path += LinuxParser::kCmdlineFilename;
-  std::ifstream data{path};
-  if (data.is_open()) {
-    contents = util::readlines(data);
-    ltrim(contents);
+  contents.resize(2048);
+  path += base;
+  path += "/cmdline";
+  std::ifstream current{path};
+  std::getline(current, contents);
+  if (contents.size() == 0) {
+    // we look at /status first line and split
+    std::filesystem::path status;
+    status += base;
+    status += "/status";
+    std::ifstream current{status};
+    std::getline(current, contents);
+    auto v = util::split(contents, ':');
+    util::ltrim(v[1]);
+    util::ltrim(v[1]);
+    current.close();
+    return v[1];
+  } else {
+    auto exe = util::split(contents, '\00');
+    return exe[0];
   }
   return contents;
 }

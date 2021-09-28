@@ -2,13 +2,13 @@
 
 #include <curses.h>
 
+#include "format.h"
+#include "system.h"
 #include <chrono>
+#include <ncurses.h>
 #include <string>
 #include <thread>
 #include <vector>
-
-#include "format.h"
-#include "system.h"
 
 using std::string;
 using std::to_string;
@@ -71,6 +71,8 @@ void NCursesDisplay::DisplayProcesses(std::vector<Process> &processes,
   mvwprintw(window, row, time_column, "TIME+");
   mvwprintw(window, row, command_column, "COMMAND");
   wattroff(window, COLOR_PAIR(2));
+  // getmaxyx(stdscr,max_rows,max_cols);
+  //  max_rows = max_rows > n ? max_rows : n;
   int const num_processes = int(processes.size()) > n ? n : processes.size();
   for (int i = 0; i < num_processes; ++i) {
     mvwprintw(window, ++row, pid_column, to_string(processes[i].Pid()).c_str());

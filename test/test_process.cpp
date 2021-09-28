@@ -38,7 +38,10 @@ TEST_CASE("Should create the same number of processes", "[process]") {
   for (const auto& pid : actual_pids) {
     std::filesystem::path data{path};
     data.append(std::to_string(pid));
-    list_processes.emplace_back(ProcessBuilder::Build(data));
+    auto p = ProcessBuilder::Build(data);
+    REQUIRE(p.Command().size() > 0);
+    REQUIRE(p.User().size() > 0);
+    list_processes.push_back(p);
   }
   REQUIRE(list_processes.size() == actual_pids.size());
 }
