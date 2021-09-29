@@ -28,11 +28,12 @@ matrix:
     - os: linux
       compiler: clang
       before_install:
-        - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-        - wget 'https://apt.llvm.org/llvm-snapshot.gpg.key' -O /tmp/key.gpg | cat /tmp/key.gpg | sudo apt-key add -
-        - sudo apt-get -q update
+        - wget -O /tmp/repo.key https://apt.llvm.org/llvm-snapshot.gpg.key
+        - sudo apt-key add /tmp/repo.key
+        - sudo add-apt-repository "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-14 main"
+        - sudo apt-get -y update
         - sudo apt-get install make cmake
-        - sudo apt-get install clang-14 clang-tools-14 clang-format-14 cppcheck libclang-cpp14 libc++-14-dev libc++abi-14-dev lcov
+        - sudo apt-get install clang-14 clang-tools-14 clang-format-14 cppcheck libclang-cpp14 libc++-14-dev libc++abi-14-dev lib++-14-dev lld-14 libunwind-13-dev lcov
         - eval "${MATRIX_EVAL}"
       addons:
         apt:
