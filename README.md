@@ -1,6 +1,6 @@
 # Process Monitor
 
-This is a simple exercise to test my C++17 knowledge.
+This is a simple exercise to test my C++17 knowledge. Exercise done during the [Udacity C++ Nanodegree] (https://d20vrrgs8k4bvw.cloudfront.net/documents/en-US/C%2B%2B+Nanodegree+Program+Syllabus.pdf)
 
 ![System Monitor](images/monitor.png)
 
